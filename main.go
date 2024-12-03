@@ -30,6 +30,7 @@ func main() {
 
 	r := gin.Default()
 	userControl := controllers.UserController{DB: db.DB}
+	menuControl := controllers.MenuController{DB: db.DB}
 
 	r.POST("/user/add", userControl.AddUser)
 	r.GET("/user/all-user", userControl.AllUser)
@@ -39,5 +40,12 @@ func main() {
 	r.GET("/user/search", userControl.SearchUser)
 	r.PATCH("/user/update/:id", userControl.UpdateUser)
 	r.DELETE("/user/delete/:id", userControl.DeleteUser)
+	r.POST("/menu/add", menuControl.AddMenu)
+	r.GET("/menu/all-menu", menuControl.AllMenu)
+	r.GET("/menu/:id", menuControl.MenuByID)
+	r.GET("/menu/search", menuControl.SearchMenu)
+	r.GET("/menu/type", menuControl.ByType)
+	r.PATCH("/menu/update/:id", menuControl.UpdateMenu)
+	r.DELETE("/menu/delete/:id", menuControl.DeleteMenu)
 	r.Run(":8000")
 }
